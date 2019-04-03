@@ -13,6 +13,11 @@ public class ConstructParam {
      */
     private ObjectSource source;
 
+    /**
+     * 类创建需要的参数
+     */
+    private Object param;
+
     public String getClassName() {
         return className;
     }
@@ -27,5 +32,13 @@ public class ConstructParam {
 
     public void setSource(ObjectSource source) {
         this.source = source;
+    }
+
+    public Object getParam() {
+        return param;
+    }
+
+    public void setParam(Object param) {
+        this.param = param;
     }
 }

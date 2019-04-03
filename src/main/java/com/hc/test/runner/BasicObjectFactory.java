@@ -1,8 +1,8 @@
 package com.hc.test.runner;
 
-public class BasicObjectFactory<T> implements IObjectFactory<T,BasicConstructParam> {
+public class BasicObjectFactory<T> implements IObjectFactory<T,ConstructParam> {
     @Override
-    public T create(BasicConstructParam param) {
-        return (T)param.getBasic();
+    public T create(ConstructParam param) {
+        return (T)param.getParam();
     }
 }

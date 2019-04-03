@@ -9,9 +9,9 @@ public class DefaultObjectFactory<T> implements IObjectFactory<T,ConstructParam>
     public T create(ConstructParam param) throws NoFactoryDefinedForSource {
         switch (param.getSource()){
             case BASIC:
-                return (T)basicObjectFactory.create((BasicConstructParam) param);
+                return (T)basicObjectFactory.create(param);
             case REFLECT:
-                return (T)reflectObjectFactory.create((ReflectConstructParam) param);
+                return (T)reflectObjectFactory.create(param);
             case SPRING:
                 return (T)springObjectFactory.create(param);
             default:
