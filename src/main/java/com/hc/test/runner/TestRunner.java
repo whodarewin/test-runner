@@ -1,11 +1,16 @@
 package com.hc.test.runner;
 
 
+import com.hc.test.runner.creator.DefaultObjectCreator;
+import com.hc.test.runner.exec.ExecParam;
+import com.hc.test.runner.exec.IMethodExec;
+import com.hc.test.runner.exec.ReflectMethodExec;
 
 public class TestRunner {
-    private DefaultObjectFactory defaultObjectFactory = new DefaultObjectFactory();
+    private DefaultObjectCreator defaultObjectFactory = new DefaultObjectCreator<>();
     private IMethodExec methodExec = new ReflectMethodExec();
-    public Object test(TestParam param) throws NoFactoryDefinedForSource {
+
+    public Object test(TestParam param) throws Exception {
         ConstructParam constructParam = param.getConstructParam();
         MethodParam methodParam = param.getMethodParam();
         ConstructParam[] methodConstructParam = methodParam.getParams();

@@ -1,4 +1,4 @@
-package com.hc.test.runner;
+package com.hc.test.runner.exec;
 
 /**
  * 执行方法需要的参数

@@ -1,5 +1,7 @@
 package com.hc.test.runner;
 
+import com.hc.test.runner.creator.ObjectSource;
+
 /**
  * 构造一个bean需要的参数
  */
@@ -16,7 +18,7 @@ public class ConstructParam {
     /**
      * 类创建需要的参数
      */
-    private Object param;
+    private ValueWapper[] param;
 
     public String getClassName() {
         return className;
@@ -34,11 +36,11 @@ public class ConstructParam {
         this.source = source;
     }
 
-    public Object getParam() {
+    public ValueWapper[] getParam() {
         return param;
     }
 
-    public void setParam(Object param) {
+    public void setParam(ValueWapper[] param) {
         this.param = param;
     }
 }

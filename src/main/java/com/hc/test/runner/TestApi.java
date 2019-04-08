@@ -1,6 +1,6 @@
 package com.hc.test.runner;
 
-import java.io.IOException;
+import com.hc.test.runner.serialize.ISerialize;
 
 /**
  * 入口，传入String格式参数
@@ -13,8 +13,8 @@ public class TestApi {
         this.serialize = serialize;
     }
 
-    public Object test(String param) throws IOException {
+    public Object test(String param) throws Exception {
         TestParam testParam = serialize.deSerialize(param);
-        return (Object) testRunner.test(testParam);
+        return testRunner.test(testParam);
     }
 }

@@ -1,4 +1,4 @@
-package com.hc.test.runner;
+package com.hc.test.runner.creator;
 
 public class NoFactoryDefinedForSource extends Exception{
     public NoFactoryDefinedForSource() {

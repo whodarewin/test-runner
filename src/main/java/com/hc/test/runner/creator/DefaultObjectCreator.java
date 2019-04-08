@@ -1,12 +1,14 @@
-package com.hc.test.runner;
+package com.hc.test.runner.creator;
 
-public class DefaultObjectFactory<T> implements IObjectFactory<T,ConstructParam> {
-    private BasicObjectFactory basicObjectFactory = new BasicObjectFactory();
+import com.hc.test.runner.*;
+
+public class DefaultObjectCreator<T> implements IObjectCreator<T,ConstructParam> {
+    private BasicObjectCreator basicObjectFactory = new BasicObjectCreator();
     private ReflectObjectFactory reflectObjectFactory = new ReflectObjectFactory(this);
     private SpringObjectFactory springObjectFactory = new SpringObjectFactory();
 
     @Override
-    public T create(ConstructParam param) throws NoFactoryDefinedForSource {
+    public T create(ConstructParam param) throws Exception {
         switch (param.getSource()){
             case BASIC:
                 return (T)basicObjectFactory.create(param);

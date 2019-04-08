@@ -1,4 +1,4 @@
-package com.hc.test.runner;
+package com.hc.test.runner.serialize;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
