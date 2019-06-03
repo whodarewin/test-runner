@@ -2,6 +2,10 @@ package com.hc.test.runner.creator;
 
 import com.hc.test.runner.*;
 
+/**
+ * 所有创建器的管理器
+ * @param <T>
+ */
 public class DefaultObjectCreator<T> implements IObjectCreator<T,ConstructParam> {
     private BasicObjectCreator basicObjectFactory = new BasicObjectCreator();
     private ReflectObjectFactory reflectObjectFactory = new ReflectObjectFactory(this);

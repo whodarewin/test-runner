@@ -10,6 +10,10 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 反射制作对象
+ * @param <T>
+ */
 public class ReflectObjectFactory<T> implements IObjectCreator<T,ConstructParam> {
 
     private DefaultObjectCreator defaultObjectFactory;
@@ -25,8 +29,9 @@ public class ReflectObjectFactory<T> implements IObjectCreator<T,ConstructParam>
         Preconditions.checkNotNull(className,"reflect creator require class name");
 
         ValueWapper[] vw = param.getParam();
+        //方法的参数
         List mp = new ArrayList();
-        //todo:传null怎么办
+        //方法参数的类型
         List<Class> argType = new ArrayList();
 
         if(vw != null){
@@ -45,6 +50,7 @@ public class ReflectObjectFactory<T> implements IObjectCreator<T,ConstructParam>
 
     private T create(String className, List<Class> argType, List mp) throws Exception {
         Class clazz = Class.forName(className);
+        //构造器
         Constructor[] constructors = clazz.getConstructors();
         Constructor needed = null;
         for (int i = 0; i < constructors.length; i++) {

@@ -6,7 +6,16 @@ import com.hc.test.runner.exec.ExecParam;
 import com.hc.test.runner.exec.IMethodExec;
 import com.hc.test.runner.exec.ReflectMethodExec;
 
+
+/**
+ * TestRunner
+ * 测试运行组件
+ * @author han.congcong
+ * @date 2019/6/3
+ */
+
 public class TestRunner {
+
     private DefaultObjectCreator defaultObjectFactory = new DefaultObjectCreator<>();
     private IMethodExec methodExec = new ReflectMethodExec();
 
