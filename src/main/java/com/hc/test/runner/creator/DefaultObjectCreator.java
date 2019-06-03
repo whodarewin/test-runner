@@ -1,6 +1,7 @@
 package com.hc.test.runner.creator;
 
 import com.hc.test.runner.*;
+import org.springframework.context.ApplicationContext;
 
 /**
  * 所有创建器的管理器
@@ -9,7 +10,11 @@ import com.hc.test.runner.*;
 public class DefaultObjectCreator<T> implements IObjectCreator<T,ConstructParam> {
     private BasicObjectCreator basicObjectFactory = new BasicObjectCreator();
     private ReflectObjectFactory reflectObjectFactory = new ReflectObjectFactory(this);
-    private SpringObjectFactory springObjectFactory = new SpringObjectFactory();
+    private SpringObjectFactory springObjectFactory ;
+
+    public DefaultObjectCreator(ApplicationContext context){
+        this.springObjectFactory = new SpringObjectFactory(context);
+    }
 
     @Override
     public T create(ConstructParam param) throws Exception {

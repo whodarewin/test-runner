@@ -7,6 +7,11 @@ import org.springframework.context.ApplicationContext;
 public class SpringObjectFactory<T> implements IObjectCreator<T,ConstructParam> {
 
     private ApplicationContext applicationContext;
+
+    public SpringObjectFactory(ApplicationContext applicationContext){
+        this.applicationContext = applicationContext;
+    }
+
     @Override
     public T create(ConstructParam param) throws NoNameForSpringBeanException {
         ValueWapper[] wappers = param.getParam();

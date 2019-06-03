@@ -35,6 +35,6 @@ public class Test {
 
     @org.junit.Test
     public void testTestApi() throws Exception {
-        Assert.assertEquals("A",new TestApi(new JsonSerialize<>(TestParam.class)).test(json));
+        Assert.assertEquals("A",new TestApi(new JsonSerialize<>(TestParam.class), null).test(json));
     }
 }

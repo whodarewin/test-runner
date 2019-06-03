@@ -5,6 +5,7 @@ import com.hc.test.runner.creator.DefaultObjectCreator;
 import com.hc.test.runner.exec.ExecParam;
 import com.hc.test.runner.exec.IMethodExec;
 import com.hc.test.runner.exec.ReflectMethodExec;
+import org.springframework.context.ApplicationContext;
 
 
 /**
@@ -16,18 +17,21 @@ import com.hc.test.runner.exec.ReflectMethodExec;
 
 public class TestRunner {
 
-    private DefaultObjectCreator defaultObjectFactory = new DefaultObjectCreator<>();
+    private DefaultObjectCreator defaultObjectCreator;
     private IMethodExec methodExec = new ReflectMethodExec();
+    public TestRunner(ApplicationContext context){
+        this.defaultObjectCreator = new DefaultObjectCreator(context);
+    }
 
     public Object test(TestParam param) throws Exception {
         ConstructParam constructParam = param.getConstructParam();
         MethodParam methodParam = param.getMethodParam();
         ConstructParam[] methodConstructParam = methodParam.getParams();
 
-        Object instance = defaultObjectFactory.create(constructParam);
+        Object instance = defaultObjectCreator.create(constructParam);
         Object[] methodParams = new Object[methodConstructParam.length];
         for (int i = 0; i < methodConstructParam.length; i++) {
-            methodParams[i] = defaultObjectFactory.create(methodConstructParam[i]);
+            methodParams[i] = defaultObjectCreator.create(methodConstructParam[i]);
         }
         ExecParam execParam = new ExecParam();
         execParam.setMethodName(methodParam.getMethodName());
