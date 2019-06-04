@@ -49,7 +49,12 @@ public class ReflectObjectFactory<T> implements IObjectCreator<T,ConstructParam>
     }
 
     private T create(String className, List<Class> argType, List mp) throws Exception {
-        Class clazz = Class.forName(className);
+        Class clazz = null;
+        try {
+            clazz = Class.forName(className);
+        }catch (ClassNotFoundException e) {
+            throw new Exception("no class found " + className);
+        }
         //构造器
         Constructor[] constructors = clazz.getConstructors();
         Constructor needed = null;
