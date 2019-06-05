@@ -1,0 +1,22 @@
+{
+  "constructParam": {
+    "className": "com.hc.test.runner.TestObject",
+    "source": "REFLECT",
+    "param": null
+  },
+  "methodParam": {
+    "methodName": "search",
+    "params": [
+      {
+        "className": "com.hc.test.runner.ConstructParam",
+        "source": "BASIC",
+        "param": [
+          {
+            "value": "A",
+            "constructParam": false
+          }
+        ]
+      }
+    ]
+  }
+}
