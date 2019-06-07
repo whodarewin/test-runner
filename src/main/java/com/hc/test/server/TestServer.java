@@ -5,6 +5,9 @@ import org.eclipse.jetty.webapp.WebAppContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * test server to serve search request
+ */
 public class TestServer{
     private static final Logger LOGGER = LoggerFactory.getLogger(TestServer.class);
     private static final int port = 9999;
