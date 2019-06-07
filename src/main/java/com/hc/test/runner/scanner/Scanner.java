@@ -4,7 +4,7 @@ import org.reflections.Reflections;
 import org.reflections.scanners.SubTypesScanner;
 
 import java.lang.reflect.Method;
-import java.util.Set;
+import java.util.*;
 
 
 /**
@@ -18,9 +18,22 @@ public class Scanner {
         return classes;
     }
 
-    public Set<String> getAllMethods(String className) throws ClassNotFoundException {
+    public Set<MethodInfo> scanAllMethods(String className) throws ClassNotFoundException {
         Class clazz = Class.forName(className);
         Method[] methods = clazz.getDeclaredMethods();
-        return null;
+        Set<MethodInfo> methodInfos = new LinkedHashSet<>();
+        for (Method method : methods) {
+            MethodInfo info = new MethodInfo();
+            String name = method.getName();
+            Class[] clazzes = method.getParameterTypes();
+            List<String> paramTypes = new ArrayList<>();
+            for (Class clz : clazzes) {
+                paramTypes.add(clz.getName());
+            }
+            info.setName(name);
+            info.setParamTypes(paramTypes);
+            methodInfos.add(info);
+        }
+        return methodInfos;
     }
 }

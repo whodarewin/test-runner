@@ -9,8 +9,10 @@ import java.util.Set;
  */
 public class ClassScannerTest extends TestCase{
     private Scanner classScanner = new Scanner();
-    public void testClassScanner(){
+    public void testClassScanner() throws ClassNotFoundException {
         Set<String> classes = classScanner.scanAllClasses("com.hc.test.runner.scanner");
-        assertTrue(classes.contains("com.hc.test.runner.scanner.ClassScanner"));
+        assertTrue(classes.contains("com.hc.test.runner.scanner.Scanner"));
+        Set<MethodInfo> infos = classScanner.scanAllMethods("com.hc.test.runner.scanner.Scanner");
+        assertEquals(infos.iterator().next().getName(),"scanAllClasses");
     }
 }
