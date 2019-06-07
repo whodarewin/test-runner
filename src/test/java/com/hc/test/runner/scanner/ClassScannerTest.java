@@ -8,9 +8,9 @@ import java.util.Set;
  * Created by congcong.han on 2019/6/7.
  */
 public class ClassScannerTest extends TestCase{
-    private ClassScanner classScanner = new ClassScanner();
+    private Scanner classScanner = new Scanner();
     public void testClassScanner(){
-        Set<String> classes = classScanner.scanAllClass("com.hc.test.runner.scanner");
+        Set<String> classes = classScanner.scanAllClasses("com.hc.test.runner.scanner");
         assertTrue(classes.contains("com.hc.test.runner.scanner.ClassScanner"));
     }
 }
