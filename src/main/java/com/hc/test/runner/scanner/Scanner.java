@@ -18,7 +18,7 @@ public class Scanner {
         return classes;
     }
 
-    public Set<String> getAllMethods(String className) throws ClassNotFoundException {
+    public Set<String> scanAllMethods(String className) throws ClassNotFoundException {
         Class clazz = Class.forName(className);
         Method[] methods = clazz.getDeclaredMethods();
         return null;

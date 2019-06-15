@@ -1,8 +1,64 @@
 <html>
 <head>
-    <title>test</title>
+    <title>test-runner</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-treeview.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="js/jquery-1.9.1-min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-treeview.min.js"></script>
 </head>
 <body>
+<div class="container">
+    <div id="header" class="row-fluid">
+        <div class="col-md-12">
+            <h1>TEST TOOL</h1>
+        </div>
+    </div>
+    <div id="sider" class="row-fluid">
+        <div class="col-md-12">
+            <ul class="nav navbar-inverse">
+                <li class="active"><a href="#">Test</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="content" class="row-fluid">
+        <div class="col-md-3">
+            <div  id="tree">
+
+            </div>
+        </div>
+        <div class="col-md-9">
+            <h2>Sidebar</h2>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    $(function() {
+        $('#tree').treeview({
+            data: getTree()//节点数据
+        });
+    })
+
+    function getTree() {
+        var tree;
+        $.ajax({url:"/class?path=com.hc.test",
+            async:false,
+            dataType:"json",
+            success:function (a) {
+                tree = a;
+            }
+        });
+        return tree;
+    }
+</script>
 
 </body>
 </html>
