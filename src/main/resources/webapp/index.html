@@ -29,6 +29,13 @@
 
     <div id="content" class="row-fluid">
         <div class="col-md-3">
+            <div class="input-group">
+                <span class="input-group-addon">CLASS PATH:</span>
+                <input type="text" class="form-control" id="path" name="path" />
+            </div>
+            <div class="button">
+                <input type="button" id="search" class="btn btn-primary" value="search">
+            </div>
             <div  id="tree">
 
             </div>
@@ -42,14 +49,22 @@
 
 <script>
     $(function() {
-        $('#tree').treeview({
-            data: getTree()//节点数据
+        $("#search").click(function () {
+            $('#tree').treeview({
+                data: getTree()//节点数据
+            });
         });
     })
 
+    function loadTree(){
+        $('#tree').treeview({
+            data: getTree()//节点数据
+        });
+    }
+
     function getTree() {
         var tree;
-        $.ajax({url:"/class?path=com.hc.test",
+        $.ajax({url:"/class?path="+$("#path").val(),
             async:false,
             dataType:"json",
             success:function (a) {
