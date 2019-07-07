@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.*;
-import java.util.concurrent.ConcurrentSkipListMap;
 
 /**
  * Created by congcong.han on 2019/6/15.
@@ -58,15 +57,15 @@ public class TreeNodeServlet  extends HttpServlet {
 
     private TreeNode packageOneNode(Character key, List<String> value) {
         Collections.sort(value);
-        TreeNode treeNode = TreeNode.defaultTreeNode();
-        treeNode.setText(key.toString());
+        TreeNode treeNode = new TreeNode();
+        treeNode.setName(key.toString());
         List<TreeNode> subNodes = new ArrayList<>();
         for(String className : value){
-            TreeNode subNode = TreeNode.defaultTreeNode();
-            subNode.setText(className);
+            TreeNode subNode = new TreeNode();
+            subNode.setName(className);
             subNodes.add(subNode);
         }
-        treeNode.setNodes(subNodes);
+        treeNode.setChildren(subNodes);
         return treeNode;
     }
 }

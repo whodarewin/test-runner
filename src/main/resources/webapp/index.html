@@ -5,12 +5,12 @@
     <link rel="stylesheet" href="css/bootstrap-treeview.min.css">
 
     <!-- Optional theme -->
-    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="css/jqtree.css">
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="js/jquery-1.9.1-min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/bootstrap-treeview.min.js"></script>
+    <script src="js/tree.jquery.js"></script>
 </head>
 <body>
 <div class="container">
@@ -42,8 +42,9 @@
 
 <script>
     $(function() {
-        $('#tree').treeview({
-            data: getTree()//节点数据
+        $('#tree').tree({
+            dataUrl: '/class?path=com.hc.test',//节点数据
+            closedIcon: '+'
         });
     })
 
