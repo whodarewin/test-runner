@@ -34,14 +34,18 @@
                 <input type="text" class="form-control" id="path" name="path" />
             </div>
             <div class="button">
-                <input type="button" id="search" class="btn btn-primary" value="search">
+                <input type="button" id="searchTree" class="btn btn-primary" value="search">
             </div>
             <div  id="tree">
 
             </div>
         </div>
         <div class="col-md-9">
-            <h2>Sidebar</h2>
+            <div class="form-group">
+                <label for="name">input param in json style then press -> </label>
+                <input type="button" id="searchValue" class="btn btn-primary" value="exec" />
+                <textarea class="form-control" rows="50"></textarea>
+            </div>
         </div>
     </div>
 
@@ -49,8 +53,9 @@
 
 <script>
     $(function() {
-        $("#search").click(function () {
+        $("#searchTree").click(function () {
             $('#tree').treeview({
+                onNodeSelected: nodeCheckFunction,
                 data: getTree()//节点数据
             });
         });
@@ -72,6 +77,11 @@
             }
         });
         return tree;
+    }
+
+    function nodeCheckFunction(event, node){
+        alert(event);
+        alert(node);
     }
 </script>
 
