@@ -29,6 +29,7 @@ public class TestServer{
         webapp.setContextPath("/") ;
         webapp.addServlet(new ServletHolder(new HelloServlet()), "/hello");
         webapp.addServlet(new ServletHolder(new TreeNodeServlet()), "/class");
+        webapp.addServlet(new ServletHolder(new MethodServlet()), "/method");
 
         webapp.setDisplayName("test-runner") ;
         webapp.setParentLoaderPriority(true) ;

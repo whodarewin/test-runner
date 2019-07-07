@@ -2,6 +2,7 @@ package com.hc.test.server;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hc.test.runner.scanner.Scanner;
+import com.hc.test.util.ResponseUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,14 +20,20 @@ import java.util.*;
 public class TreeNodeServlet  extends HttpServlet {
     private static final Logger LOGGER = LoggerFactory.getLogger(TreeNodeServlet.class);
     private static final String PATH = "path";
+    private ThreadLocal<Integer> ids = new ThreadLocal<Integer>() {
+        protected Integer initialValue () {
+            return 0;
+        }
+    };
     private Scanner scanner = new Scanner();
     private ObjectMapper mapper = new ObjectMapper();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        req.setCharacterEncoding("utf-8");
-        resp.setCharacterEncoding("utf-8");
-        resp.setHeader("content-type","application/json");
+        ResponseUtil.setJsonMeta(resp);
+        ResponseUtil.setUTF_8Meta(resp);
+        ResponseUtil.setUTF_8Meta(req);
+        ids.set(0);
         String path = req.getParameter(PATH);
         Set<String> classes = scanner.scanAllClasses(path);
         List<TreeNode> treeNodes = packageNodes(classes);

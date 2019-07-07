@@ -1,5 +1,7 @@
 package com.hc.test.server;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.List;
 
 /**
@@ -13,6 +15,8 @@ public class TreeNode {
     public static final String WHITE_COLOR = "#000000";
     public static final String BLACK_COLOR = "#ffffff";
 
+    @JsonIgnore
+    private int id;
     private String name;
     private List<TreeNode> children;
 
@@ -32,5 +36,13 @@ public class TreeNode {
 
     public void setChildren(List<TreeNode> children) {
         this.children = children;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

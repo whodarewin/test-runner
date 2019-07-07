@@ -2,10 +2,10 @@
 <head>
     <title>test-runner</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/bootstrap-treeview.min.css">
+    <link rel="stylesheet" href="css/jqtree.css">
 
     <!-- Optional theme -->
-    <link rel="stylesheet" href="css/jqtree.css">
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="js/jquery-1.9.1-min.js"></script>
@@ -34,14 +34,18 @@
                 <input type="text" class="form-control" id="path" name="path" />
             </div>
             <div class="button">
-                <input type="button" id="search" class="btn btn-primary" value="search">
+                <input type="button" id="searchTree" class="btn btn-primary" value="search">
             </div>
             <div  id="tree">
 
             </div>
         </div>
         <div class="col-md-9">
-            <h2>Sidebar</h2>
+            <div class="form-group">
+                <label for="name">input param in json style then press -> </label>
+                <input type="button" id="searchValue" class="btn btn-primary" value="exec" />
+                <textarea class="form-control" rows="50"></textarea>
+            </div>
         </div>
     </div>
 
@@ -49,12 +53,45 @@
 
 <script>
     $(function() {
-        $('#tree').tree({
-            dataUrl: '/class?path=com.hc.test',//节点数据
-            closedIcon: '+'
+        $("#searchTree").click(function () {
+            $('#tree').tree('destroy');
+            $('#tree').tree({
+                data: getTree(),
+                openedIcon: '-',
+                closedIcon: '+'
+            });
+
+            $('#tree').on(
+                    'tree.select',
+                    function(event) {
+                        if (event.node) {
+                            // node was selected
+                            var node = event.node;
+                            if(node.getLevel() != 2){
+                                return;
+                            }
+                            if(node.children != ""){
+                                return;
+                            }
+                            var className = node.name;
+                            var nodes = getMethod(className);
+                            nodes.forEach(function (n) {
+                                $('#tree').tree(
+                                        'appendNode',
+                                        n,
+                                        node
+                                );
+                            });
+                        }
+                        else {
+                            // event.node is null
+                            // a node was deselected
+                            // e.previous_node contains the deselected node
+                        }
+                    }
+            );
         });
     })
-
 
     function getTree() {
         var tree;
@@ -66,6 +103,23 @@
             }
         });
         return tree;
+    }
+
+    function getMethod(className) {
+        var tree;
+        $.ajax({url:"/method?class.name="+className,
+            async:false,
+            dataType:"json",
+            success:function (a) {
+                tree = a;
+            }
+        });
+        return tree;
+    }
+
+    function nodeCheckFunction(event, node){
+        alert(event);
+        alert(node);
     }
 </script>
 
